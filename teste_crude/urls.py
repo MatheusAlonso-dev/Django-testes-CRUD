@@ -21,5 +21,6 @@ from login import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # url de acesso         app.arquivo
-    path('', views.login, name='login')
+    path('', views.login, name='login'),
+    path('cadastrar/', include('cadastrar.urls')),
 ]

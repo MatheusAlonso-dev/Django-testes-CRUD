@@ -1,0 +1,64 @@
+<h1>Cadastrar</h1>
+<form action="{% url 'cadastrarRedirect' %}" method="POST" nome="">{% csrf_token %}
+    <input type="text"  name="nome" placeholder="insira o nome" id="">
+    <br>
+    <input type="email" name="email" placeholder="insira o email" id="">
+    <br>
+    <input type="submit" value="cadastrar" id="">
+</form>
+<hr>
+<h1>Listar/Deletar</h1>
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Deletar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in alunos %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.nome}}</td>
+                <td>{{i.email}}</td>
+                <td>
+                    <a href="{% url 'deletar_aluno' i.id %}">Deletar</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<hr>
+
+
+<h1>Atualizar</h1>
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Atualizar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in alunos %}
+            <tr>
+                <form action="{% url 'atualizar_aluno' i.id %}" method="POST"> {% csrf_token %}
+                <td>{{i.id}}</td>
+                <td>
+                    <input type="text" name="nome" value="{{i.nome}}">
+                </td>
+                <td>
+                    <input type="email" name="email" value="{{i.email}}">
+                </td>
+                <td>
+                    <input type="submit" value="atualizar">
+                </td>
+                </form>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
